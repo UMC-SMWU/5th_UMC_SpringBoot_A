@@ -29,6 +29,14 @@ public class Member extends BaseEntity {
     private Address address;
 
     @Embedded
+    @AttributeOverrides({
+            @AttributeOverride(name="city",
+                    column = @Column(name = "spec_city")),
+            @AttributeOverride(name="street",
+                    column = @Column(name = "spec_street")),
+            @AttributeOverride(name="zipcode",
+                    column = @Column(name = "spec_zipcode"))
+    })
     private Address spec_address;
 
     @Column(length = 10)
