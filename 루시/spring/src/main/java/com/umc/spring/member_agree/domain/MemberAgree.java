@@ -2,6 +2,7 @@ package com.umc.spring.member_agree.domain;
 
 import com.umc.spring.common.BaseEntity;
 import com.umc.spring.member.domain.Member;
+import com.umc.spring.terms.domain.Terms;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 
