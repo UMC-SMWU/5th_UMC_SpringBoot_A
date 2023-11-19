@@ -1,31 +1,31 @@
-package com.umc.spring.member_mission.domain;
+package com.umc.spring.mission.domain;
 
 import com.umc.spring.common.BaseEntity;
-import com.umc.spring.member.domain.Member;
-import com.umc.spring.mission.domain.Mission;
 import lombok.AccessLevel;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
 
+import java.time.LocalDateTime;
+
 import static javax.persistence.FetchType.*;
 import static javax.persistence.GenerationType.*;
 import static lombok.AccessLevel.*;
 
 @Entity
-@Getter
 @NoArgsConstructor(access = PROTECTED)
-public class MemberMission extends BaseEntity {
+@Getter
+public class Mission extends BaseEntity {
     @Id
     @GeneratedValue(strategy = IDENTITY)
     private Long id;
 
     @ManyToOne(fetch = LAZY)
-    @JoinColumn(name = "memberId")
-    private Member member;
+    @JoinColumn(name = "storeId")
+    private Store store;
 
-    @ManyToOne(fetch = LAZY)
-    @JoinColumn(name = "missionId")
-    private Mission mission;
+    private int reward;
+    private LocalDateTime deadline;
+    private String missionSpec;
 }
