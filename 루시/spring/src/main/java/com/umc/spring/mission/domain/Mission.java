@@ -1,6 +1,7 @@
 package com.umc.spring.mission.domain;
 
 import com.umc.spring.common.BaseEntity;
+import com.umc.spring.store.domain.Store;
 import lombok.AccessLevel;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
