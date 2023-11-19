@@ -2,6 +2,7 @@ package com.umc.spring.store.domain;
 
 import com.umc.spring.common.BaseEntity;
 import com.umc.spring.member.domain.Address;
+import com.umc.spring.region.domain.Region;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 
