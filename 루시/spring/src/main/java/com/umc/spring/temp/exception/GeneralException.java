@@ -1,7 +1,7 @@
 package com.umc.spring.temp.exception;
 
-import com.umc.spring.common.code.BaseErrorCode;
-import com.umc.spring.common.code.ErrorReasonDto;
+import com.umc.spring.temp.apiPayload.code.BaseErrorCode;
+import com.umc.spring.temp.apiPayload.code.ErrorReasonDTO;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 
@@ -11,11 +11,11 @@ public class GeneralException extends RuntimeException {
 
     private BaseErrorCode code;
 
-    public ErrorReasonDto getErrorReason() {
+    public ErrorReasonDTO getErrorReason() {
         return this.code.getReason();
     }
 
-    public ErrorReasonDto getErrorReasonHttpStatus() {
+    public ErrorReasonDTO getErrorReasonHttpStatus() {
         return this.code.getReasonHttpStatus();
     }
 }
