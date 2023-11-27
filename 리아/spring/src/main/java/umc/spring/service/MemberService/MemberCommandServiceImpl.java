@@ -21,18 +21,21 @@ import java.util.stream.Collectors;
 @RequiredArgsConstructor
 @Transactional(readOnly = true)
 public class MemberCommandServiceImpl implements MemberCommandService{
+
     private final MemberRepository memberRepository;
+
     private final FoodCategoryRepository foodCategoryRepository;
 
     @Override
     @Transactional
-    public Member joinMember(MemberRequestDTO.JoinDto request){
+    public Member joinMember(MemberRequestDTO.JoinDto request) {
 
         Member newMember = MemberConverter.toMember(request);
         List<FoodCategory> foodCategoryList = request.getPreferCategory().stream()
-                .map(category ->{
+                .map(category -> {
                     return foodCategoryRepository.findById(category).orElseThrow(() -> new FoodCategoryHandler(ErrorStatus.FOOD_CATEGORY_NOT_FOUND));
                 }).collect(Collectors.toList());
+
         List<MemberPrefer> memberPreferList = MemberPreferConverter.toMemberPreferList(foodCategoryList);
 
         memberPreferList.forEach(memberPrefer -> {memberPrefer.setMember(newMember);});
