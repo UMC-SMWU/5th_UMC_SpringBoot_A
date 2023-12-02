@@ -9,9 +9,13 @@ import umc.spring.converter.MemberConverter;
 import umc.spring.converter.MemberPreferConverter;
 import umc.spring.domain.FoodCategory;
 import umc.spring.domain.Member;
+import umc.spring.domain.enums.MissionStatus;
+import umc.spring.domain.mapping.MemberMission;
 import umc.spring.domain.mapping.MemberPrefer;
 import umc.spring.repository.FoodCategoryRepository;
+import umc.spring.repository.MemberMissionRepository;
 import umc.spring.repository.MemberRepository;
+import umc.spring.repository.MissionRepository;
 import umc.spring.web.dto.MemberRequestDTO;
 
 import java.util.List;
@@ -21,8 +25,10 @@ import java.util.stream.Collectors;
 @RequiredArgsConstructor
 @Transactional(readOnly = false)
 public class MemberCommandServiceImpl implements MemberCommandService{
-    private final FoodCategoryRepository foodCategoryRepository;
     private final MemberRepository memberRepository;
+    private final FoodCategoryRepository foodCategoryRepository;
+    private final MissionRepository missionRepository;
+    private final MemberMissionRepository memberMissionRepository;
 
     @Override
     public Member joinMember(MemberRequestDTO.JoinDto request){
@@ -35,5 +41,19 @@ public class MemberCommandServiceImpl implements MemberCommandService{
         List<MemberPrefer> memberPreferList = MemberPreferConverter.toMemberPreferList(foodCategoryList);
         memberPreferList.forEach(memberPrefer -> {memberPrefer.setMember(newMember);});
         return memberRepository.save(newMember);
+    }
+
+    @Override
+    @Transactional
+    public MemberMission newMemberMission(Long memberId, Long missionId) {
+
+        MemberMission memberMission = MemberMission.builder()
+                .status(MissionStatus.Challenging)
+                .build();
+
+        memberMission.setMember(memberRepository.findById(memberId).get());
+        memberMission.setMission(missionRepository.findById(missionId).get());
+
+        return memberMissionRepository.save(memberMission);
     }
 }
