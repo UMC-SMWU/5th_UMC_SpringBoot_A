@@ -27,9 +27,9 @@ public class MissionAlreadyExistValidator implements ConstraintValidator<ExistMi
     @Override
     public boolean isValid(Long value, ConstraintValidatorContext context) {
 
-        Optional<Mission> target = memberQueryService.findMission(value);
+        Optional<MemberMission> target = memberQueryService.findMemberMission(value);
 
-        if (target.isEmpty()){
+        if (target.isEmpty() == false){
             context.disableDefaultConstraintViolation();
             context.buildConstraintViolationWithTemplate(ErrorStatus.MISSION_ALREADY_EXIST.toString()).addConstraintViolation();
 

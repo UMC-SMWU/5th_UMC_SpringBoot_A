@@ -13,4 +13,5 @@ public interface MemberQueryService {
 
     Optional<Member> findMember(Long id);
     Optional<Mission> findMission(Long id);
+    Optional<MemberMission> findMemberMission(Long id);
 }

@@ -20,9 +20,11 @@ public class MemberQueryServiceImpl implements MemberQueryService {
 
     private final MemberRepository memberRepository;
     private final MissionRepository missionRepository;
+    private final MemberMissionRepository memberMissionRepository;
 
     @Override
     public Optional<Member> findMember(Long id) {
+
         return memberRepository.findById(id);
     }
 
@@ -30,6 +32,14 @@ public class MemberQueryServiceImpl implements MemberQueryService {
     public Optional<Mission> findMission(Long id) {
         return missionRepository.findById(id);
     }
+
+    @Override
+    public Optional<MemberMission> findMemberMission(Long id) {
+
+        return memberMissionRepository.findById(id);
+    }
+
+
 
 
 }
