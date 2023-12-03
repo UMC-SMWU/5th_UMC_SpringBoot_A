@@ -32,8 +32,6 @@ public enum ErrorStatus implements BaseErrorCode {
     MISSION_NOT_FOUND(HttpStatus.NOT_FOUND, "MISSION4001", "미션이 없습니다."),
     MISSION_ALREADY_EXIST(HttpStatus.BAD_REQUEST, "MISSION4000", "이미 존재하는 미션입니다");
 
-
-
     private final HttpStatus httpStatus;
     private final String code;
     private final String message;
