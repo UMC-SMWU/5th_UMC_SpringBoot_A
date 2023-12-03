@@ -5,12 +5,14 @@ import umc.spring.domain.Member;
 import umc.spring.domain.common.BaseEntity;
 
 import javax.persistence.*;
+import java.util.List;
 
 @Entity
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
 @AllArgsConstructor
 @Getter
 @Builder
+@Setter
 
 public class Review extends BaseEntity {
     @Id
@@ -18,11 +20,35 @@ public class Review extends BaseEntity {
     private long id;
     private String title;
     private Float score;
+    private String body;
 
 
     @ManyToOne(fetch=FetchType.LAZY)
     @JoinColumn(name="member_id")
     private Member member;
+
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "store_id")
+    private Store store;
+
+    @OneToMany(mappedBy = "review", cascade = CascadeType.ALL)
+    private List<ReviewImage> reviewImageList;
+
+    public void setMember(Member member){
+        if(this.member != null)
+            member.getReviewList().remove(this);
+        this.member = member;
+        member.getReviewList().add(this);
+    }
+
+    public void setStore(Store store){
+        if (this.score != null)
+            store.getReviewList().remove(this);
+        this.store = store;
+        store.getReviewList().add(this);
+    }
+
+
 
 //    @OneToMany(mappedBy = "member", cascade = CascadeType.ALL)
 //    private List<MemberMission> memberMissionList = new ArrayList<>();

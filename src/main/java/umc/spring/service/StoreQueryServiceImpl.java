@@ -3,20 +3,20 @@ package umc.spring.service;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
-import umc.spring.domain.Member;
-import umc.spring.repository.MemberRepository;
+import umc.spring.domain.Store;
+import umc.spring.repository.StoreRepository;
 
 import java.util.Optional;
 
 @Service
 @RequiredArgsConstructor
 @Transactional(readOnly = true)
-public class MemberQueryServiceImpl implements MemberQueryService{
+public class StoreQueryServiceImpl implements StoreQueryService{
 
-    private final MemberRepository memberRepository;
+    private final StoreRepository storeRepository;
 
     @Override
-    public Optional<Member> findMember(Long id) {
-        return memberRepository.findById(id);
+    public Optional<Store> findStore(Long id) {
+        return storeRepository.findById(id);
     }
 }
