@@ -2,10 +2,9 @@ package umc.spring.validation.validator;
 
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Component;
-import umc.spring.service.MemberQueryService;
+import umc.spring.service.MemberService.MemberQueryService;
 import umc.spring.apiPayload.code.status.ErrorStatus;
 import umc.spring.domain.Member;
-import umc.spring.service.MemberQueryService;
 import umc.spring.validation.annotation.ExistMember;
 
 import javax.validation.ConstraintValidator;

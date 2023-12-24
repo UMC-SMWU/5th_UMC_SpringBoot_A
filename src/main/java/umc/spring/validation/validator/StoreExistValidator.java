@@ -4,7 +4,7 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Component;
 import umc.spring.domain.Store;
 import umc.spring.apiPayload.code.status.ErrorStatus;
-import umc.spring.service.StoreQueryService;
+import umc.spring.service.StoreService.StoreQueryService;
 import umc.spring.validation.annotation.ExistStore;
 
 import javax.validation.ConstraintValidator;
